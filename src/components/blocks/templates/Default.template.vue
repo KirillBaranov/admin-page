@@ -1,17 +1,6 @@
 <template>
   <div class="output__template">
-
-    <template v-if="result.error == ''">
-      <OutputHeader time="0 ms" :meta="meta"></OutputHeader>
-
-      <div class="output__body">
-
-      </div>
-    </template>
-
-    <template v-else>
-      <OutputHeader time="0 ms" meta="Возникла ошибка при выполнении запроса, перезагрузите страницу."></OutputHeader>
-    </template>
+    <OutputHeader time="0 ms" meta="Выберите интересующий пункт, впишите значение в поле и нажмите вперед."></OutputHeader>
   </div>
 </template>
 
@@ -21,24 +10,10 @@ import OutputHeader from "./header/OutputHeader";
 import { mapGetters } from 'vuex';
 
 export default {
-  name: "Tps.template",
+  name: "Default.template",
   components: {
     OutputHeader
   },
-  props: {
-    result: {
-      type: Object,
-      required: true
-    }
-  },
-  computed: {
-    ...mapGetters( 'CheckModule', [
-      'getCurrentServer'
-    ]),
-    meta() {
-      return `Запрашиваемый сервер: ${this.getCurrentServer}`;
-    }
-  }
 }
 </script>
 

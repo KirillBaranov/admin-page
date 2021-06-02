@@ -1,10 +1,10 @@
 <template>
-$END$
+
 </template>
 
 <script>
 export default {
-name: "Mult.template.vue"
+  name: "Mult.template.vue"
 }
 </script>
 

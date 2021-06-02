@@ -1,32 +1,65 @@
 <template>
-  <div id="app">
-    <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
+  <div class="app shrine-login" id="app">
+    <div class="app__body">
+      <transition name="app__swipe-animation">
+        <keep-alive>
+          <router-view/>
+        </keep-alive>
+      </transition>
     </div>
-    <router-view/>
   </div>
 </template>
 
-<style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
+<script>
+
+import { mapMutations } from 'vuex';
+
+import AppHeader from "./components/layouts/AppHeader";
+
+export default {
+  name: 'App',
+  components: {
+    AppHeader,
+  },
+  methods: {
+    ...mapMutations( 'AuthModule', [
+      'auth',
+      'logout'
+    ])
+  },
+  mounted() {
+    try {
+      const SESSION         = localStorage.getItem( 'user' ) ? JSON.parse( localStorage.getItem( 'user' ) ) : false;
+
+      const isAuthenticated = SESSION && SESSION.success ? SESSION.success : false;
+
+      if ( isAuthenticated ) {
+        return this.auth( SESSION );
+      }
+    }
+
+    catch ( e ) {
+      console.error( e );
+
+      this.logout();
+    }
+  }
 }
 
-#nav {
-  padding: 30px;
-}
+</script>
 
-#nav a {
-  font-weight: bold;
-  color: #2c3e50;
-}
+<style lang="scss">
+  @import "assets/scss/style";
 
-#nav a.router-link-exact-active {
-  color: #42b983;
-}
+  // change page animation.
+  //.app__swipe-animation-enter-active {
+  //  transition: all .4s ease;
+  //}
+  //.app__swipe-animation-leave-active {
+  //  transition: all .8s cubic-bezier(1.0, 0.5, 0.8, 1.0);
+  //}
+  //.app__swipe-animation-enter, .app__swipe-animation-leave-to {
+  //  transform: scale( 0 );
+  //  opacity: 0;
+  //}
 </style>

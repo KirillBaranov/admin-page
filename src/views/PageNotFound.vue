@@ -1,5 +1,7 @@
 <template>
-    $END$
+    <main class="page not-found">
+      <h1>Страница не найдена.</h1>
+    </main>
 </template>
 
 <script>

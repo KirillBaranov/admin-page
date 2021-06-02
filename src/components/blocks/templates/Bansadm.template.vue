@@ -1,10 +1,10 @@
 <template>
-$END$
+
 </template>
 
 <script>
 export default {
-name: "Bansadm.template.vue"
+  name: "Bansadm.template.vue"
 }
 </script>
 

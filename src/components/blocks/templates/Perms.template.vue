@@ -1,10 +1,10 @@
 <template>
-$END$
+
 </template>
 
 <script>
 export default {
-name: "Perms.template"
+  name: "Perms.template"
 }
 </script>
 
